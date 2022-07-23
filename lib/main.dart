@@ -19,6 +19,7 @@ class ExpensesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: MyHomePage(),
       theme: tema.copyWith(
         colorScheme: tema.colorScheme.copyWith(
@@ -68,14 +69,6 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
-  _openTransactionFormModal(BuildContext context) {
-    showModalBottomSheet(
-        context: context,
-        builder: (_) {
-          return TransactionForm(_addTransaction);
-        });
-  }
-
   _addTransaction(String title, double value, DateTime date) {
     final newTransaction = Transaction(
       id: Random().nextDouble().toString(),
@@ -91,9 +84,17 @@ class _MyHomePageState extends State<MyHomePage> {
     Navigator.of(context).pop();
   }
 
-  _deleteTransaction(String id) {
+  _openTransactionFormModal(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (_) {
+          return TransactionForm(_addTransaction);
+        });
+  }
+
+  _removeTransaction(String id) {
     setState(() {
-      _transactions.retainWhere((tr) => tr.id == id);
+      _transactions.removeWhere((tr) => tr.id == id);
     });
   }
 
@@ -170,7 +171,7 @@ class _MyHomePageState extends State<MyHomePage> {
             if (!_showChart || !isLandscape)
               Container(
                 height: avaliableHeight * (isLandscape ? 1 : 0.7),
-                child: TransactionList(_transactions, _deleteTransaction),
+                child: TransactionList(_transactions, _removeTransaction),
               ),
           ],
         ),

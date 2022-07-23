@@ -54,12 +54,14 @@ class AdaptativeDatePicker extends StatelessWidget {
                 ),
                 TextButton(
                   style: ElevatedButton.styleFrom(
-                      primary: Theme.of(context).copyWith().primaryColor),
+                    primary: Theme.of(context).copyWith().colorScheme.primary,
+                  ),
                   onPressed: () => _showDatePicker(context),
                   child: Text(
                     "Selecionar Data",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
+                      color: Colors.white,
                     ),
                   ),
                 ),

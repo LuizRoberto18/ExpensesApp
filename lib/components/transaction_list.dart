@@ -41,11 +41,19 @@ class TransactionList extends StatelessWidget {
                 margin: EdgeInsets.symmetric(vertical: 8, horizontal: 5),
                 child: ListTile(
                   leading: CircleAvatar(
+                    backgroundColor:
+                        Theme.of(context).copyWith().colorScheme.primary,
                     radius: 30,
                     child: Padding(
                       padding: EdgeInsets.all(6),
                       child: FittedBox(
-                        child: Text("R\$${tr.value}"),
+                        child: Text(
+                          "R\$${tr.value}",
+                          style: TextStyle(
+                            color: Colors.amber,
+                            fontFamily: 'EduQLDBeginner',
+                          ),
+                        ),
                       ),
                     ),
                   ),

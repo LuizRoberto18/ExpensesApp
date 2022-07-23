@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class AdaptativeButton extends StatelessWidget {
   final String label;
-  final Function onPressed;
+  final Function() onPressed;
 
   AdaptativeButton({
     Key? key,
@@ -16,17 +16,16 @@ class AdaptativeButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Platform.isIOS
         ? CupertinoButton(
-            onPressed: () => onPressed,
+            onPressed: onPressed,
             padding: EdgeInsets.symmetric(horizontal: 20),
-            color: Theme.of(context).copyWith().primaryColor,
+            color: Theme.of(context).copyWith().colorScheme.primary,
             child: Text(label),
           )
         : ElevatedButton(
-            onPressed: () => onPressed,
+            onPressed: onPressed,
             style: ElevatedButton.styleFrom(
-              primary: Theme.of(context).copyWith().primaryColor,
-              textStyle:
-                  TextStyle(color: Theme.of(context).textTheme.button!.color),
+              primary: Theme.of(context).copyWith().colorScheme.primary,
+              textStyle: Theme.of(context).appBarTheme.titleTextStyle,
             ),
             child: Text(label),
           );

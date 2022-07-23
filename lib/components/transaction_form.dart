@@ -6,7 +6,7 @@ import 'adaptative/adaptative_date_picker.dart';
 class TransactionForm extends StatefulWidget {
   final void Function(String, double, DateTime) onSubmit;
 
-  TransactionForm(this.onSubmit);
+  TransactionForm(this.onSubmit, {Key? key}) : super(key: key);
 
   @override
   State<TransactionForm> createState() => _TransactionFormState();
