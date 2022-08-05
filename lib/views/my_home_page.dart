@@ -10,20 +10,38 @@ import '../components/transaction_list.dart';
 import '../models/transaction.dart';
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key}) : super(key: key);
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   final List<Transaction> _transactions = [];
   bool _showChart = false;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    print(state);
+    //super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    WidgetsBinding.instance.removeObserver(this);
+  }
 
   List<Transaction> get _recentTransactions {
     return _transactions.where((tr) {
       return tr.date.isAfter(DateTime.now().subtract(
-        Duration(days: 7),
+        const Duration(days: 7),
       ));
     }).toList();
   }
@@ -91,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     //separando a appBar da Scaffold para saber seu tamanho real
     final appBar = AppBar(
-      title: Text("Despesas Pessoais"),
+      title: const Text("Despesas Pessoais"),
       actions: actions,
     );
     /*MediaQuery vai guardar o tamanho da tela, pegando o tamanho da tela visivel - o tamnho da appBar - 
@@ -140,7 +158,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Platform.isIOS
         ? CupertinoPageScaffold(
             navigationBar: CupertinoNavigationBar(
-              middle: Text("Despesas Pessoais"),
+              middle: const Text("Despesas Pessoais"),
               trailing: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: actions,
@@ -155,7 +173,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ? Container()
                 : FloatingActionButton(
                     onPressed: () => _openTransactionFormModal(context),
-                    child: Icon(Icons.add),
+                    child: const Icon(Icons.add),
                   ),
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerFloat,

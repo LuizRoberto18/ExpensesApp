@@ -7,7 +7,7 @@ import 'Dart:io';
 class AdaptativeDatePicker extends StatelessWidget {
   final DateTime selectedDate;
   final Function(DateTime) onDateChanged;
-  AdaptativeDatePicker({
+  const AdaptativeDatePicker({
     Key? key,
     required this.selectedDate,
     required this.onDateChanged,
@@ -57,7 +57,7 @@ class AdaptativeDatePicker extends StatelessWidget {
                     primary: Theme.of(context).copyWith().colorScheme.primary,
                   ),
                   onPressed: () => _showDatePicker(context),
-                  child: Text(
+                  child: const Text(
                     "Selecionar Data",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,

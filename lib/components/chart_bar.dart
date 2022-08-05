@@ -5,7 +5,7 @@ class ChartBar extends StatelessWidget {
   final String label;
   final double value;
   final double percentage;
-  ChartBar({
+  const ChartBar({
     Key? key,
     required this.label,
     required this.value,
@@ -21,7 +21,7 @@ class ChartBar extends StatelessWidget {
             Container(
               height: constraints.maxHeight * 0.15,
               child: FittedBox(
-                child: Text("${value.toStringAsFixed(2)}"),
+                child: Text(value.toStringAsFixed(2)),
               ),
             ),
             SizedBox(height: constraints.maxHeight * 0.05),
@@ -37,7 +37,7 @@ class ChartBar extends StatelessWidget {
                         color: Colors.grey,
                         width: 1.0,
                       ),
-                      color: Color.fromRGBO(220, 220, 220, 1),
+                      color: const Color.fromRGBO(220, 220, 220, 1),
                       borderRadius: BorderRadius.circular(5),
                     ),
                   ),

@@ -6,7 +6,7 @@ class AdaptativeButton extends StatelessWidget {
   final String label;
   final Function() onPressed;
 
-  AdaptativeButton({
+  const AdaptativeButton({
     Key? key,
     required this.label,
     required this.onPressed,
@@ -17,7 +17,7 @@ class AdaptativeButton extends StatelessWidget {
     return Platform.isIOS
         ? CupertinoButton(
             onPressed: onPressed,
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             color: Theme.of(context).copyWith().colorScheme.primary,
             child: Text(label),
           )
